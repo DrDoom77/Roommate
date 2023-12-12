@@ -208,14 +208,17 @@ public class login implements ActionListener {
             String user = usertf.getText();
             String pass = new String(pasF.getPassword());
             // validating data from txt file by checking hashmap
-            if (validateLogin(user, pass)) {
-                showMessageDialog(null, "Login successful!");
+            if (user.isEmpty() || pass.isEmpty())
+            {
+                showMessageDialog(null, "Both fields are required!");
+                //add another condition to check for empty field
+            }
+            else if (validateLogin(user, pass)) {
+                showMessageDialog(null, "Login Successful");
                 // Additional logic if login is successful
             }
-            //add another condition to check for empty field
-            else if (user.isEmpty() || pass.isEmpty()) {
-                showMessageDialog(null, "Fields cannot be empty");
-            } else { // Login failed
+            else
+            { // Login failed
                 showMessageDialog(null, "Invalid username or password!");
             }
         }
