@@ -1,43 +1,43 @@
 package Classes;
 
-import Interfaces.*;
-
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.event.*;
-import static javax.swing.JOptionPane.showMessageDialog;
-import java.util.*;
-import java.io.*;
-import java.awt.Font;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-public class login implements ActionListener, Ilginval {
+import static javax.swing.JOptionPane.showMessageDialog;
+
+
+public class LandLordLogin implements ActionListener {
 
     JFrame loginFrame;
     JPanel loginDashboard;
     JPanel adminLogin;
     JLabel background, poster;
-    JLabel userlabel, passlabel, ad_usl, ad_psl;
+    JLabel userlabel, passlabel, ad_usl, ad_psl, l5, l6;
     JPasswordField pasF, ad_pf;
     JTextField usertf, passtf;
-    RoundButton login, signup, exit;
-    JButton frgtpass, Admin; // login dashboard
+    JButton login, signup, frgtpass, exit, Admin; // login dashboard
     JButton lgin, b7, b8, ad_exi, bc2usr; // admin Login
 
-    login() {
+    LandLordLogin() {
 
         // create frame
         loginFrame = new JFrame();
 
-        ImageIcon image = new ImageIcon("Media\\loginBg.jpg");
+        ImageIcon image = new ImageIcon("C:\\Users\\moyaz\\OneDrive\\Desktop\\Uni\\Java\\Java proj\\Media\\loginBg.jpg");
         background = new JLabel(image);
         background.setBounds(0, 0, 1100, 700);
 
         // icon
-        ImageIcon icon = new ImageIcon("Media\\Frmlogo.png");
+        ImageIcon icon = new ImageIcon("C:\\Users\\moyaz\\OneDrive\\Desktop\\Uni\\Java\\Java proj\\Media\\Frmlogo.png");
 
         // login dashboard panel
         loginDashboard = new JPanel();
-        userlabel = new JLabel("Email:");
+        userlabel = new JLabel("Username:");
         Font smallFont = userlabel.getFont().deriveFont(Font.PLAIN, 18f);
         userlabel.setBounds(610, 245, 150, 20);
         userlabel.setForeground(Color.BLACK);
@@ -66,30 +66,23 @@ public class login implements ActionListener, Ilginval {
         // / pasF.setContentAreaFilled(false);
         // pasF.setBorderPainted(false);
 
-        login = new RoundButton("LOGIN");
-        login.setBounds(680, 420, 100, 35);
+        login = new JButton("Login as Land Lord");
+        login.setBounds(680, 420, 150, 50);
         login.addActionListener(this);
+        login.setOpaque(true);
+        login.setContentAreaFilled(true);
         login.setBackground(Color.BLACK);
-        login.setForeground(Color.black);
-        login.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        /*
-         * login.setOpaque(true);
-         * login.setContentAreaFilled(true);
-         */
+        login.setBorderPainted(true);
+        login.setForeground(Color.WHITE);
 
-        signup = new RoundButton("SIGN-UP");
-        signup.setBounds(850, 420, 100, 35);
+        signup = new JButton("Sign-up as Land Lord");
+        signup.setBounds(850, 420, 170, 50);
         signup.addActionListener(this);
+        signup.setOpaque(true);
+        signup.setContentAreaFilled(true);
         signup.setBackground(Color.BLACK);
-        signup.setForeground(Color.black);
-        signup.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
-        /*
-         * signup.setOpaque(true);
-         * signup.setContentAreaFilled(true);
-         */
-
-        login.setBackground(new Color(167, 199, 231)); // pastel blue
-        signup.setBackground(new Color(167, 199, 231)); // pastel blue
+        signup.setBorderPainted(true);
+        signup.setForeground(Color.WHITE);
 
         frgtpass = new JButton("Forgot Password");
         frgtpass.setBounds(610, 355, 135, 20);
@@ -99,15 +92,13 @@ public class login implements ActionListener, Ilginval {
         frgtpass.setBorderPainted(false);
         frgtpass.setForeground(Color.BLACK);
 
-        exit = new RoundButton("Exit");
+        exit = new JButton("Exit");
         exit.setBounds(1000, 620, 80, 30);
         exit.addActionListener(this);
         exit.setOpaque(false);
         exit.setContentAreaFilled(false);
         exit.setBorderPainted(false);
         exit.setForeground(Color.BLACK);
-        exit.setBackground(new Color(191, 49, 49)); // pastel blue
-        exit.setBorder(BorderFactory.createMatteBorder(1, 1, 3, 1, Color.black));
 
         Admin = new JButton("*Administrator portal");
         Admin.setBounds(0, 620, 200, 30);
@@ -119,7 +110,7 @@ public class login implements ActionListener, Ilginval {
 
         loginDashboard.add(login);
         loginDashboard.add(signup);
-        // loginDashboard.add(frgtpass);
+        loginDashboard.add(frgtpass);
         loginDashboard.add(exit);
         loginDashboard.add(Admin);
         loginDashboard.add(userlabel);
@@ -148,13 +139,13 @@ public class login implements ActionListener, Ilginval {
 
         passtf = new JTextField("", 4);
         passtf.setBounds(495, 240, 300, 32);
-        passtf.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
+        passtf.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
         passtf.setFont(bigFont);
         passtf.setOpaque(false);
 
         ad_pf = new JPasswordField("", 4);
         ad_pf.setBounds(495, 308, 300, 32);
-        ad_pf.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
+        ad_pf.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
         ad_pf.setFont(bigFont);
         ad_pf.setOpaque(false);
 
@@ -175,7 +166,7 @@ public class login implements ActionListener, Ilginval {
         ad_exi.setBorderPainted(false);
         ad_exi.setForeground(Color.BLACK);
 
-        bc2usr = new JButton("go back to user Login");
+        bc2usr = new JButton("*go back to user Login");
         bc2usr.setBounds(0, 620, 200, 30);
         bc2usr.addActionListener(this);
         bc2usr.setOpaque(false);
@@ -183,7 +174,7 @@ public class login implements ActionListener, Ilginval {
         bc2usr.setBorderPainted(false);
         bc2usr.setForeground(Color.BLACK);
 
-        ImageIcon img = new ImageIcon("Media\\admindash.jpg");
+        ImageIcon img = new ImageIcon("C:\\Users\\moyaz\\OneDrive\\Desktop\\Siam Roomie version 2\\src\\Frmlogo.png");
         poster = new JLabel(img);
         poster.setBounds(0, 0, 1100, 700);
 
@@ -219,18 +210,20 @@ public class login implements ActionListener, Ilginval {
         if (e.getSource() == login) {
             String user = usertf.getText();
             String pass = new String(pasF.getPassword());
-            // validating data from txt file
-            if (user.isEmpty() || pass.isEmpty()) {
-                showMessageDialog(null, "Fields cannot be empty");
+            // validating data from txt file by checking hashmap
+            if (user.isEmpty() || pass.isEmpty())
+            {
+                showMessageDialog(null, "Both fields are required!");
+                //add another condition to check for empty field
             }
-
-            else if (validateLoginUser(user, pass)) {
-                showMessageDialog(null, "Login successful!");
-                // Additional frame here
-               new TenantDashboard();
+            else if (validateLogin(user, pass)) {
+                showMessageDialog(null, "Login Successful");
+                new LandLordDashboard();
+                loginFrame.setVisible(false);
+                // Additional logic if login is successful
             }
-
-            else { // Login failed
+            else
+            { // Login failed
                 showMessageDialog(null, "Invalid username or password!");
             }
         }
@@ -239,79 +232,29 @@ public class login implements ActionListener, Ilginval {
             new IntroDuck();
             loginFrame.setVisible(false);
         } else if (e.getSource() == signup) {
-            new TenantSignup();
+            new LandLordDashboard();
             loginFrame.setVisible(false);
-        } else if (e.getSource() == Admin) {
-            loginDashboard.setVisible(false);
-            adminLogin.setVisible(true);
-        } else if (e.getSource() == bc2usr) {
-            loginDashboard.setVisible(true);
-            adminLogin.setVisible(false);
-        } else if (e.getSource() == ad_exi) {
-            new IntroDuck();
-            loginFrame.setVisible(false);
-        } else if (e.getSource() == lgin) {
-            String user = passtf.getText();
-            String pass = new String(ad_pf.getPassword());
-            // validating data from txt file
-            if (user.isEmpty() || pass.isEmpty()) {
-                showMessageDialog(null, "Fields cannot be empty");
-            }
-
-            else if (validateLoginAdmin(user, pass)) {
-                // showMessageDialog(null, "Login successful!");
-                // Additional frame here
-                new AdminDashboard().setVisible(true);
-                // loginFrame.setVisible(false);
-
-            }
-
-            else { // Login failed
-                showMessageDialog(null, "Invalid username or password!");
-            }
-
         }
     }
 
     // userpass validation methode
-    @Override
-    public boolean validateLoginUser(String user, String pass) {
-        try (Scanner scanner = new Scanner(new File("Data\\tenantdata.txt"))) {
+    private boolean validateLogin(String user, String pass) {
+        try (Scanner scanner = new Scanner(new File("C:\\Users\\moyaz\\OneDrive\\Documents\\New folder\\ROOMMATE\\Data\\landlorddata.txt"))) {
             StringBuilder userData = new StringBuilder();
 
-            // Reading file into a StringBuilder
+            // Read the entire file into a StringBuilder
             while (scanner.hasNextLine()) {
                 userData.append(scanner.nextLine().trim()).append("\n");
             }
             // Check if the entered credentials exist in the data
-            String userCredentials = userData.toString();// String builder to regular String
-            return userCredentials.contains("Email: " + user) &&
-                    userCredentials.contains("Password: " + pass);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return false; // if Unable to validate login
-    }
-
-    @Override
-    public boolean validateLoginAdmin(String user, String pass) {
-        try (Scanner scanner = new Scanner(new File("Data\\Admindata.txt"))) {
-            StringBuilder userData = new StringBuilder();
-
-            // Reading file into a StringBuilder
-            while (scanner.hasNextLine()) {
-                userData.append(scanner.nextLine().trim()).append("\n");
-            }
-            // Check if the entered credentials exist in the data
-            String userCredentials = userData.toString();// String builder to regular String
+            String userCredentials = userData.toString();
             return userCredentials.contains("Name: " + user) &&
                     userCredentials.contains("Password: " + pass);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        return false; // if Unable to validate login
+        return false; // Unable to validate login
     }
 }
-// Hello Bad Boy!!!
+//Hello Bad Boy!!!

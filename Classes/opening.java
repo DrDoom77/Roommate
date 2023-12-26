@@ -7,26 +7,26 @@ import java.awt.event.MouseEvent;
 
 public class opening {
     public opening() {
-            
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                ImageIcon icon = new ImageIcon("C:\\Users\\moyaz\\OneDrive\\Desktop\\Siam Roomie version 2\\src\\Media\\Frmlogo.png");//icon
-                // Create the frames (cards)
+                ImageIcon icon = new ImageIcon("Media\\Frmlogo.png");// icon
+                // Create the Cards
                 JPanel card1 = new JPanel();
-                ImageIcon imageIcon1 = new ImageIcon("C:\\Users\\moyaz\\OneDrive\\Desktop\\Siam Roomie version 2\\src\\Media\\Roommate logo.gif");
-                JLabel label1 = new JLabel(imageIcon1);
+                ImageIcon img1 = new ImageIcon("Media\\Roommate logo.gif");
+                JLabel label1 = new JLabel(img1);
                 card1.add(label1);
 
                 JPanel card2 = new JPanel();
-                ImageIcon imageIcon2 = new ImageIcon("C:\\Users\\moyaz\\OneDrive\\Desktop\\Siam Roomie version 2\\src\\Media\\pg2.jpg");
-                JLabel label2 = new JLabel(imageIcon2);
+                ImageIcon img2 = new ImageIcon("Media\\pg2.jpg ");
+                JLabel label2 = new JLabel(img2);
                 card2.add(label2);
 
-                // Create the panel that contains the "cards"
+                // Creating the panel that contains the cards
                 CardLayout cl = new CardLayout();
                 JPanel cards = new JPanel(cl);
-                cards.add(card1, "Card 1");
-                cards.add(card2, "Card 2");
+                cards.add(card1, "Loading");
+                cards.add(card2, "swipeup");
 
                 // Create and set up the window
                 JFrame frame = new JFrame("ROOMMATE");
@@ -40,7 +40,6 @@ public class opening {
                 // Add a mouse listener to card2 for swipe detection
                 card2.addMouseListener(new MouseAdapter() {
                     Point point = new Point();
-
                     @Override
                     public void mousePressed(MouseEvent e) {
                         point = e.getPoint();
@@ -58,8 +57,8 @@ public class opening {
                     }
                 });
 
-                // Create a timer that waits 1.5 seconds then shows the second card
-                Timer timer = new Timer(2200, e -> cl.show(cards, "Card 2"));
+                // Create a timer that waits 2.2 seconds then shows the second card
+                Timer timer = new Timer(2200, e -> cl.show(cards, "swipeup"));
                 timer.setRepeats(false); // Only execute once
                 timer.start(); // Start timer
             }
